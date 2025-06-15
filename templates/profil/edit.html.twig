@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mon profil{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .profil-container {
+            max-width: 500px;
+            margin: 3rem auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 245, 245, 0.1);
+        }
+
+        .profil-container h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #0077b6;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.6rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-button {
+            display: block;
+            width: 100%;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background-color: #005f8e;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="profil-container">
+        <h1>Modifier mon profil</h1>
+
+        <form method="post">
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" name="nom" id="nom" value="{{ user.nom }}">
+            </div>
+
+            <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" name="prenom" id="prenom" value="{{ user.prenom }}">
+            </div>
+
+            <button type="submit" class="submit-button">Enregistrer</button>
+        </form>
+    </div>
+{% endblock %}

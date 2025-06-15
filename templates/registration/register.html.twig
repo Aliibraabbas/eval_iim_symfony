@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <style>
+        .form-container {
+            max-width: 400px;
+            margin: 3rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            margin-top: 1rem;
+            display: block;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="password"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.2rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container .checkbox {
+            margin-top: 1rem;
+        }
+
+        .form-container button {
+            margin-top: 1rem;
+            width: 100%;
+            padding: 0.6rem;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #005f87;
+        }
+
+        .form-container .login-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .form-container .login-link a {
+            text-decoration: none;
+            color: #0077b6;
+        }
+
+        .form-container .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <div class="form-container">
+        <h1>📝 Register</h1>
+
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.nom) }}
+            {{ form_row(registrationForm.prenom) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, { label: 'Password' }) }}
+            {{ form_row(registrationForm.agreeTerms) }}
+
+            <button type="submit">Register</button>
+        {{ form_end(registrationForm) }}
+
+        <div class="login-link">
+            <p>Déjà un compte ? <a href="{{ path('app_login') }}">Connectez-vous ici</a></p>
+        </div>
+    </div>
+{% endblock %}

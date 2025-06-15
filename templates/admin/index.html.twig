@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des utilisateurs{% endblock %}
+
+{% block body %}
+    <h1>Liste des utilisateurs</h1>
+
+    {# ✅ Flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {# ✅ Actions rapides pour admin #}
+    <h2>Actions admin</h2>
+    <ul>
+        <li><a href="{{ path('app_produit_index') }}">📦 Gérer les produits</a></li>
+        <li><a href="{{ path('app_produit_new') }}">➕ Créer un produit</a></li>
+        <li><a href="{{ path('admin_add_points') }}">💰 Ajouter 1000 points à tous les users actifs</a></li>
+    </ul>
+
+    <hr>
+
+    {# ✅ Liste des utilisateurs #}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Actif</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.actif ? 'Oui' : 'Non' }}</td>
+                    <td>
+                        <a href="{{ path('admin_user_toggle', {'id': user.id}) }}">
+                            {{ user.actif ? 'Désactiver' : 'Activer' }}
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Aucun utilisateur trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

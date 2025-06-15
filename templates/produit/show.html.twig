@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail du produit{% endblock %}
+
+{% block body %}
+    <h1>Détail du produit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ produit.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ produit.nom }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ produit.category }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ produit.prix }} points</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ produit.description }}</td>
+            </tr>
+            <tr>
+                <th>Créé le</th>
+                <td>{{ produit.createdAt ? produit.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mis à jour</th>
+                <td>{{ produit.updatedAt ? produit.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 1rem;">
+        <a href="{{ path('app_produit_index') }}">⬅ Retour à la liste</a>
+    </div>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <div style="margin-top: 1rem;">
+            <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">✏️ Modifier</a>
+            {{ include('produit/_delete_form.html.twig') }}
+        </div>
+    {% endif %}
+
+    {% if is_granted('ROLE_USER') %}
+        {% if app.user and app.user.actif %}
+            <form action="{{ path('app_produit_acheter', {'id': produit.id}) }}" method="post" style="margin-top: 2rem;">
+                <input type="hidden" name="_token" value="{{ csrf_token('acheter' ~ produit.id) }}">
+                <button class="btn btn-success">✅ Acheter ce produit</button>
+            </form>
+        {% else %}
+            <p style="color: red; margin-top: 2rem;">🚫 Votre compte est désactivé. Vous ne pouvez pas acheter de produits.</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

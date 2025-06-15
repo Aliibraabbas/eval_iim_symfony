@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un produit{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .produit-form-container {
+            max-width: 500px;
+            margin: 3rem auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .produit-form-container h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #0077b6;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.6rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #005f8e;
+        }
+
+        .link-back {
+            display: block;
+            margin-top: 1rem;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="produit-form-container">
+        <h1>Créer un nouveau produit</h1>
+
+        {{ form_start(form) }}
+
+        <div class="form-group">
+            {{ form_label(form.nom) }}
+            {{ form_widget(form.nom) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.category) }}
+            {{ form_widget(form.category) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.prix) }}
+            {{ form_widget(form.prix) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+        </div>
+
+        <button class="btn-submit">Enregistrer</button>
+
+        {{ form_end(form) }}
+
+        <div class="link-back">
+            <a href="{{ path('app_produit_index') }}">← Retour à la liste</a>
+        </div>
+    </div>
+{% endblock %}
