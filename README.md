@@ -41,7 +41,7 @@ Ce projet a été réalisé dans le cadre de l'évaluation Symfony à l’IIM. I
 
 ```bash
 # Cloner le projet
-git clone https://github.com/votre-utilisateur/votre-projet.git
+git clone git@github.com:Aliibraabbas/eval_iim_symfony.git
 cd votre-projet
 
 # Installer les dépendances
